@@ -434,11 +434,22 @@ body {
   gap: 40px;
 }
 
-.hero-text {
-  color: var(--eerie-black-1);
-  font-size: var(--fs-4);
+.hero .section-title {
+font-size: var(--fs-1);
+  font-weight: var(--fw-600);
+  font-family: var(--ff-league_spartan);
+  color: var(--white);
   text-align: center;
-  margin-block: 18px 20px;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px var(--black_50);
+  line-height: 1.2;
+}
+
+.hero-text {
+font-size: var(--fs-4);
+  color: var(--white);
+  text-align: center;
+  text-shadow: 1px 1px 2px var(--black_50);
 }
 
 .hero .btn { margin-inline: auto; }
@@ -1203,12 +1214,13 @@ body {
    */
 
   .hero .container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
+    justify-items: center;
   }
 
   .hero .section-title,
-  .hero-text { text-align: left; }
+  .hero-text { text-align: center; }
 
   .hero .btn { margin-inline: 0; }
 
