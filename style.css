@@ -49,7 +49,7 @@
    */
 
   --ff-league_spartan: 'League Spartan', sans-serif;
-  --ff-poppins: 'Poppins', sans-serif; 
+  --ff-google_sans_code: 'Google Sans Code', sans-serif; 
 
   --fs-1: 4.2rem;
   --fs-2: 3.2rem;
@@ -146,7 +146,7 @@ ion-icon { pointer-events: none; }
 address { font-style: normal; }
 
 html {
-  font-family: var(--ff-poppins);
+  font-family: var(--ff-google_sans_code);
   font-size: 10px;
   scroll-behavior: smooth;
 }
@@ -303,15 +303,21 @@ body {
   #HEADER
 \*-----------------------------------*/
 
+.logo img {
+    width: 162px;
+    height: auto;
+}
 .header .btn { display: none; }
 
 .header {
+  height: 80px;
+  overflow: visible;  
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   background-color: var(--white);
-  padding-block: 12px;
+  padding-block: 15px;
   box-shadow: var(--shadow-1);
   z-index: 4;
 }
@@ -321,6 +327,8 @@ body {
 .header .container,
 .header-actions,
 .navbar .wrapper {
+  height: 100%;
+  align-items: center; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -419,7 +427,7 @@ body {
   #HERO
 \*-----------------------------------*/
 
-.hero { padding-block-start: calc(var(--section-padding) + 80px); }
+.hero { padding-block-start: calc(var(--section-padding) + 0px); }
 
 .hero .container {
   display: grid;
