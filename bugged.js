@@ -61,14 +61,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Smooth scroll for down arrow
+  // Smooth scroll for down arrow - scroll to How It Works section
   const downArrow = document.querySelector('.down-arrow');
-  if (downArrow) {
+  const howItWorksSection = document.getElementById('how-it-works');
+  
+  if (downArrow && howItWorksSection) {
     downArrow.addEventListener('click', function() {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
+      howItWorksSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
+    });
+
+    downArrow.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        howItWorksSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     });
   }
 
