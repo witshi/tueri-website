@@ -1,75 +1,63 @@
 'use strict';
 
+
+
 /**
- * Tueri - Main JavaScript
+ * add event on element
  */
 
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-
-  // Element selectors
-  const navToggleBtn = document.querySelector('[data-nav-toggler]');
-  const mobileNav = document.querySelector('[data-mobile-nav]');
-  const overlay = document.querySelector('[data-overlay]');
-  const header = document.querySelector('[data-header]');
-  const submenuToggles = document.querySelectorAll('.submenu-toggle');
-
-  // Toggle mobile menu
-  if (navToggleBtn && mobileNav && overlay) {
-    navToggleBtn.addEventListener('click', function() {
-      navToggleBtn.classList.toggle('active');
-      mobileNav.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.classList.toggle('nav-active');
-    });
-
-    // Close menu when clicking overlay
-    overlay.addEventListener('click', function() {
-      navToggleBtn.classList.remove('active');
-      mobileNav.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.classList.remove('nav-active');
-    });
+const addEventOnElem = function (elem, type, callback) {
+  if (elem.length > 1) {
+    for (let i = 0; i < elem.length; i++) {
+      elem[i].addEventListener(type, callback);
+    }
+  } else {
+    elem.addEventListener(type, callback);
   }
+}
 
-  // Handle mobile submenu toggles
-  submenuToggles.forEach(function(toggle) {
-    toggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      const parent = this.closest('.has-submenu');
-      
-      // Close other open submenus
-      document.querySelectorAll('.has-submenu.active').forEach(function(item) {
-        if (item !== parent) {
-          item.classList.remove('active');
-        }
-      });
-      
-      // Toggle current submenu
-      parent.classList.toggle('active');
-    });
-  });
 
-  // Header scroll effect
-  if (header) {
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
+
+/**
+ * navbar toggle
+ */
+
+const navbar = document.querySelector("[data-navbar]");
+const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+const navLinks = document.querySelectorAll("[data-nav-link]");
+const overlay = document.querySelector("[data-overlay]");
+
+const toggleNavbar = function () {
+  navbar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+addEventOnElem(navTogglers, "click", toggleNavbar);
+
+const closeNavbar = function () {
+  navbar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+addEventOnElem(navLinks, "click", closeNavbar);
+
+
+
+/**
+ * header active when scroll down to 100px
+ */
+
+const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
+
+const activeElem = function () {
+  if (window.scrollY > 100) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
   }
+}
 
-  // Smooth scroll for down arrow
-  const downArrow = document.querySelector('.down-arrow');
-  if (downArrow) {
-    downArrow.addEventListener('click', function() {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
-    });
-  }
-
-});
+addEventOnElem(window, "scroll", activeElem);
